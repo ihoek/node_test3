@@ -37,3 +37,14 @@
   display: flex;
   justify-content: center;
 }
+.home {
+  display: flex;
+  width: 10%;
+  height: 30px;
+  padding: 10px;
+  background-color: orange;
+  border-radius: 10%;
+  margin-top: 20px;
+  justify-content: center;
+  text-align: center;
+}

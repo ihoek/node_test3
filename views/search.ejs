@@ -7,16 +7,19 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>회원 찾기</h1>
-    <h3>찾고자 하는 회원 명 : <%= username.name %></h3>
+    <div class="container">
+      <h1>회원 찾기</h1>
+      <h3>찾고자 하는 회원 명 : <%= username.name %></h3>
 
-    <div class="table">
-      <div class="header_row">
-        <div>이름</div>
-        <div>나이</div>
-        <div>이메일</div>
+      <div class="table">
+        <div class="header_row">
+          <div class="header_name">이름</div>
+          <div class="header_age">나이</div>
+          <div class="header_email">이메일</div>
+        </div>
+        <div class="row"></div>
       </div>
-      <div class="row"></div>
+      <div class="home"><a href="/">홈으로 이동</a></div>
     </div>
   </body>
   <script src="/js/search.js"></script>

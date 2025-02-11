@@ -24,43 +24,30 @@ app.get("/", function (req, res) {
   res.render("main");
 });
 
+//GET
 app.get("/getForm", function (req, res) {
   console.log("회원 정보 검색 GET 요청 결과", req.query, "요청왔음");
   data_name = req.query;
   res.render("search", { title: "Get 요청결과", username: req.query });
 });
 
+//POST
 app.post("/postForm", function (req, res) {
   console.log("회원정보 등록 ", req.body, "요청왔음");
   data = req.body;
-  res.render("result", {
-    title: "post 요청결과",
-    userinfo: req.body,
-  });
+  res.render("result", {});
   //console.log("data", data);
 });
 
-//userinfo 요청 받음
+//userinfo 요청 받은 경우
 app.get("/userinfo", function (req, res) {
   res.json(data);
 });
 
+//username 요청 받은 경우
 app.get("/username", function (req, res) {
   res.json(data_name);
 });
-
-app.get("/getUser", function (req, res) {
-  console.log("getUser ", req.query, " 요청왔음");
-  res.render("result", { title: "Get 요청결과", userinfo: req.query });
-});
-
-// app.get("/test", (req, res) => {
-//   res.render("test");
-// });
-
-// app.get("/test2", (req, res) => {
-//   res.render("test2");
-// });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

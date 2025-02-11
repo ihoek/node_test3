@@ -18,9 +18,9 @@ fetch("/username")
       const row_div = document.createElement("div");
       row_div.classList.add("row_div");
       row_div.innerHTML = `
-        <div>${user.name}</div>
-        <div>${user.age}</div>
-        <div>${user.email}</div>
+        <div class="row_name">${user.name}</div>
+        <div class="row_age">${user.age}</div>
+        <div class="row_email">${user.email}</div>
       `;
       row.appendChild(row_div);
     });

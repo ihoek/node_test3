@@ -4,8 +4,9 @@ fetch("/userinfo")
     const updata_data = JSON.parse(JSON.stringify(data)); //data 형태변환
     let local_data = JSON.parse(localStorage.getItem("data")) || [];
     local_data.push(updata_data);
-    localStorage.setItem("data", JSON.stringify(local_data));
+    localStorage.setItem("data", JSON.stringify(local_data)); //로컬 스토리지 저장
 
+    //table 셍성
     const row = document.querySelector(".row");
     local_data.forEach((user) => {
       const row_div = document.createElement("div");
@@ -15,7 +16,7 @@ fetch("/userinfo")
         <div class="row_age">${user.age}</div>
         <div class="row_email">${user.email}</div>
       `;
-      row.appendChild(row_div);
+      row.appendChild(row_div); //행 생성
     });
   })
   .catch((e) => {
