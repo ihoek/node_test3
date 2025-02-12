@@ -3,46 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/main.css" />
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <h3>form 전송 실습</h3>
-    <h4>회원정보 검색</h4>
-    <form action="/getForm" method="get">
-      <input type="text" placeholder="회원 검색" name="name" required />
-      <button type="submit">회원정보 검색</button>
-    </form>
+    <button onclick="onClick()">axios 요청하기</button>
 
-    <hr />
-    <h4>회원정보 등록</h4>
-    <form action="/postForm" method="post">
-      <input
-        type="text"
-        placeholder="회원 이름을 입력해 주세요"
-        name="name"
-        required
-      />
-      <input
-        type="text"
-        placeholder="나이를 입력해 주세요"
-        name="age"
-        required
-      />
-      <input
-        type="text"
-        placeholder="이메일을 작성해 주세요"
-        name="email"
-        required
-      /><!-- required 입력하지 않으면 값이 넘어가지 않음-->
-      <input
-        type="password"
-        placeholder="password 입력해 주세요"
-        name="pw"
-        required
-      />
-
-      <button type="submit">회원등록</button>
-    </form>
+    <div class="box"></div>
   </body>
+  <script>
+    const box = document.querySelector(".box");
+    const data = {
+      id: 1,
+      name: "김김김",
+      age: 24,
+    };
+    const file_list = [
+      "aaww1334",
+      "asd14123",
+      "asssjsjdj2",
+      "dddw123",
+      "ddjwjwjaa111",
+      "djdwjw1",
+      "djwjaaaw1",
+      "dnansndjw1",
+      "dwdwds1112",
+      "dwdwwd1231",
+      "hshsh12",
+      "jdjsdjkkw1",
+      "jsjdhdjwh1",
+      "like21",
+      "nnsd221",
+      "nodes1",
+      "user12",
+      "user22221",
+      "wdwdwddw1122313",
+      "wdwsss124",
+    ];
+    const reversed = file_list.reverse();
+
+    const MovePage = (type) => {
+      console.log("type", type);
+      //axios({ method: "get", url: "/page1" }).then((res) => {});
+      window.location.href = `http://localhost:3000/${type}`;
+    };
+
+    for (let i = 0; i < 20; i++) {
+      const button = document.createElement("button");
+      button.innerText = i + 1 + "번 페이지";
+      button.onclick = function () {
+        MovePage(reversed[i]);
+      };
+      box.appendChild(button);
+      // box.innerHTML += `<button onclick="MovePage(${file_list[i]})">${file_list[i]}</button>`;
+    }
+    const onClick = () => {
+      axios({ method: "post", url: "/axiospost", data: data }).then((res) => {
+        console.log(res, "뭐라고 나오니");
+      });
+    };
+  </script>
 </html>

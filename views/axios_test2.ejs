@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div>아이디<input type="text" name="id" /></div>
+      <div>비밀번호<input type="text" name="pw" /></div>
+      <button onclick="onClick()">로그인</button>
+      <div class="result"></div>
+    </div>
+  </body>
+  <script>
+    const result = document.querySelector(".result");
+    const onClick = () => {
+      let data = {
+        user_id: document.querySelector("input[name='id']").value,
+        user_pw: document.querySelector("input[name='pw']").value,
+      };
+      //console.log("Data", data);
+      axios
+        .post("http://localhost:3000/axios_test2", data)
+        .then((res) => (result.innerText = res.data.message));
+    };
+  </script>
+</html>

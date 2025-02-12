@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/axios_test1.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <form>
+        <div class="name">
+          <div>이름</div>
+          <input type="text" name="name" />
+        </div>
+        <div class="gender">
+          <fieldset name="gener_form">
+            <legend>성별</legend>
+            <input type="radio" name="gender" value="man" />남자
+            <input type="radio" name="gender" value="woman" />여자
+          </fieldset>
+        </div>
+        <div class="birth">
+          <fieldset>
+            <legend>생년월일</legend>
+            <select name="birth_year">
+              <% for(let i=1990;i<2026;i++){ %>
+              <option value="<%= i %>"><%= i %></option>
+              <% } %>
+            </select>
+            년
+            <select name="birth_month">
+              <% for(let i=1;i<13;i++){ %>
+              <option value="<%= i %>"><%= i %></option>
+              <% } %></select
+            >월
+            <select name="birth_day">
+              <% for(let i=1;i<31;i++){ %>
+              <option value="<%= i %>"><%= i %></option>
+              <% } %></select
+            >일
+          </fieldset>
+        </div>
+        <div class="favorite">
+          <fieldset>
+            <legend>관심사</legend>
+            <input type="checkbox" value="travel" name="favorite" />여행
+            <input type="checkbox" value="fashion" name="favorite" />패션
+            <input type="checkbox" value="food" name="favorite" />음식
+          </fieldset>
+        </div>
+        <button type="button" onclick="onClick()">회원가입</button>
+      </form>
+    </div>
+  </body>
+  <script>
+    const onClick = (event) => {
+      //event.preventDefault(); // 폼 제출 방지
+
+      const data = {
+        name: document.querySelector("input[name='name']").value,
+        gender:
+          document.querySelector("input[name='gender']:checked")?.value || "",
+        birthYear: document.querySelector("select[name='birth_year']").value,
+        birthMonth: document.querySelector("select[name='birth_month']").value,
+        birthDay: document.querySelector("select[name='birth_day']").value,
+        favorites: Array.from(
+          document.querySelectorAll("input[name='favorite']:checked")
+        )
+          .map((checkbox) => checkbox.value)
+          .join(","),
+      };
+
+      //console.log(data);
+
+      // axios
+      //   .get("http://localhost:3000/axios_test1", data)
+      //   .then((data) => console.log(data));
+      axios({
+        method: "get",
+        url: "http://localhost:3000/axios_test1",
+        params: data,
+      }).then((res) => {
+        console.log(res.config.params);
+      });
+    };
+  </script>
+</html>
